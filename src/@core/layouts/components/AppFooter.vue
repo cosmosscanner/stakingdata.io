@@ -1,12 +1,12 @@
 <template>
   <p class="clearfix mb-0">
     <span class="float-md-left d-none d-md-block d-md-inline-block mt-25">
-      Powered By
+      Stakingdata.io is a
       <b-link
         class="ml-25 font-weight-bolder"
         href="#"
         target="_blank"
-      >Ping.pub</b-link>
+      >Ping.pub</b-link> fork
     </span>
 
   </p>
