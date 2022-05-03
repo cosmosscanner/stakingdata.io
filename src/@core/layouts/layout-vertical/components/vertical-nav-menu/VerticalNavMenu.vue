@@ -26,7 +26,7 @@
             >
               <span class="brand-logo">
                 <b-img
-                  src="https://s3.amazonaws.com/keybase_processed_uploads/98a7fd23c010efd47a4081a7df494b05_360_360.jpg"
+                  :src="appLogoImage1"
                   alt="logo"
                 />
               </span>
@@ -133,7 +133,7 @@ export default {
     const collapseTogglerIconFeather = computed(() => (collapseTogglerIcon.value === 'unpinned' ? 'CircleIcon' : 'DiscIcon'))
 
     // App Name
-    const { appName, appLogoImage } = $themeConfig.app
+    const { appName, appLogoImage1 } = $themeConfig.app
 
     return {
       navMenuItems,
@@ -153,7 +153,7 @@ export default {
 
       // App Name
       appName,
-      appLogoImage,
+      appLogoImage1,
     }
   },
   computed: {

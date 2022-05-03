@@ -27,11 +27,11 @@
           <div class="d-flex my-3 justify-content-center align-items-center">
             <!--<vuexy-logo width="75px" />-->
             <p
-              style="font-size: 14px !important; color: #5e5873"
+              style="font-size: 14px !important; color: #5e5873; font-weight: 700"
               class="adText"
-            ><i>
+            >
               24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE
-              WITH US.</i>
+              WITH US.
             </p>
             <!--<h1
               class="text-primary display-4 font-weight-bolder d-none d-md-block"
@@ -248,7 +248,4 @@ export default {
 </script>
 
 <style scoped>
-.adText {
-  font-family: 'Lilita One', cursive;
-}
 </style>
