@@ -28,7 +28,7 @@
       </div>
     </b-link>
     <p class="mb-3">
-        <vuexy-logo width="75px" /> 24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE WITH US.
+      24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE WITH US.
     </p>
     <!-- <p class="mb-1">
       24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE WITH US. explorer is not just an explorer but also a wallet and more ... 🛠
