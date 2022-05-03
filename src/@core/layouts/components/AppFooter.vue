@@ -9,22 +9,6 @@
       >Ping.pub</b-link>
     </span>
 
-    <router-link
-      v-ripple.400="'rgba(113, 102, 240, 0.15)'"
-      class="float-md-right"
-      to="/coffee"
-    >Buy me a cup of coffee.
-      <span
-        v-ripple.400="'rgba(113, 102, 240, 0.15)'"
-        variant="outline-primary"
-      >
-        <feather-icon
-          icon="HeartIcon"
-          size="21"
-          class="text-danger stroke-current"
-        />
-      </span>
-    </router-link>
   </p>
 </template>
 
