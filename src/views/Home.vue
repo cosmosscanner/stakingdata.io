@@ -17,7 +17,10 @@
         <span class="align-middle ml-25">Wallet</span>
       </b-button>
     </b-nav>
-    <b-link to="/decentr/staking/decentrvaloper1th4h3j6fu9kffyhqly52uy0ku9c5f0shmskp68" class="">
+    <b-link
+      to="/decentr/staking/decentrvaloper1th4h3j6fu9kffyhqly52uy0ku9c5f0shmskp68"
+      class=""
+    >
       <div class="d-flex align-items-center justify-content-center">
         <div
           style="height: 150px !important; width: 90%"
@@ -27,17 +30,13 @@
           <div class="d-flex my-3 justify-content-center align-items-center">
             <!--<vuexy-logo width="75px" />-->
             <p
-              style="font-size: 14px !important; color: #5e5873; font-weight: 700"
-              class="adText"
+              class="font-weight-bolder d-none d-md-block"
+              style="color: #5e5873;"
             >
               24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE
               WITH US.
             </p>
-            <!--<h1
-              class="text-primary display-4 font-weight-bolder d-none d-md-block"
-            >
-              DECALI Explorer
-            </h1>-->
+            
           </div>
         </div>
       </div>
@@ -246,6 +245,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>
