@@ -28,6 +28,7 @@
                 <b-img
                   :src="appLogoImage1"
                   alt="logo"
+                  width="150px"
                 />
               </span>
               <h2 class="brand-text">
