@@ -23,34 +23,20 @@
     >
       <div class="d-flex align-items-center justify-content-center">
         <div
-          style="height: 150px !important; width: 90%"
+          style="height: 150px !important; width: 100%"
           class="d-flex my-3 justify-content-center align-items-center"
         >
           <vuexy-logo />
           <div class="d-flex my-3 justify-content-center align-items-center">
-            <!--<vuexy-logo width="75px" />-->
-            <p
-              class="font-weight-bolder d-none d-md-block"
-              style="color: #5e5873;"
-            >
-              24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE
-              WITH US.
+            <p class="font-weight-bolder d-md-flex text-right text-md-center" style="color: #5e5873;">
+              <span style="" class="d-md-none">STAKE WITH US.</span> <br class="d-md-none" />
+              24/7 MONITORED SERVICE.<br class="d-md-none" /> 1% COMMISSION UNTIL EOY 2022. 
+              <span class="d-none d-md-block" style="padding-left:3px;">STAKE WITH US.</span>
             </p>
-            
           </div>
         </div>
       </div>
     </b-link>
-    <!--<p class="mb-3">
-      24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE WITH US.
-    </p>-->
-    <!-- <p class="mb-1">
-      24/7 MONITORED SERVICE. 1% COMMISSION UNTIL THE EOY 2022. STAKE WITH US. explorer is not just an explorer but also a wallet and more ... 🛠
-    </p>
-    <h2 class="mb-3">
-      Cosmos Ecosystem Blockchains 🚀
-    </h2> -->
-
     <div>
       <b-row class="match-height">
         <b-col

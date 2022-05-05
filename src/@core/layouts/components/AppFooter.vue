@@ -1,6 +1,6 @@
 <template>
   <p class="clearfix mb-0">
-    <span class="float-md-left d-none d-md-block d-md-inline-block mt-25">
+    <span class="float-md-left d-block d-md-inline-block mt-25">
       Stakingdata.io is a
       <b-link
         class="ml-25 font-weight-bolder"
