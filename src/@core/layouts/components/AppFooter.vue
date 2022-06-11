@@ -2,28 +2,26 @@
   <p class="clearfix mb-0">
     <span class="float-md-left d-block d-md-inline-block mt-25">
       Stakingdata.io is a
-      <b-link
-        class="ml-25 font-weight-bolder"
-        href="#"
-        target="_blank"
-      >Ping.pub</b-link> fork.
+      <b-link class="ml-25 font-weight-bolder" href="#" target="_blank"
+        >Ping.pub</b-link
+      >
+      fork. DYOR, always!
     </span>
-
   </p>
 </template>
 
 <script>
-import { BLink, VBPopover } from 'bootstrap-vue'
-import Ripple from 'vue-ripple-directive'
+import { BLink, VBPopover } from "bootstrap-vue";
+import Ripple from "vue-ripple-directive";
 
 export default {
-  name: 'AppFooter',
+  name: "AppFooter",
   components: {
     BLink,
   },
   directives: {
-    'b-popover': VBPopover,
+    "b-popover": VBPopover,
     Ripple,
   },
-}
+};
 </script>
