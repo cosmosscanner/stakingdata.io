@@ -11,8 +11,7 @@ export const $themeConfig = {
   app: {
     appName: 'DECALI', // Will update name in navigation menu (Branding)
     // eslint-disable-next-line global-require
-    appLogoImage: require('@/assets/images/logo/logo.svg'), // Will update logo in navigation menu (Branding)
-    appLogoImage1: "https://i.ibb.co/NsXQBJV/nologo.png",
+    appLogoImage: '/logo.svg', // Will update logo in navigation menu (Branding)
   },
   layout: {
     isRTL: false,

@@ -286,7 +286,7 @@
 
     <b-alert
       variant="secondary"
-      :show="true"
+      :show="!accounts && device === 'keplr'"
     >
       <h4 class="alert-heading">
         Enable Keplr For {{ chainId }}
@@ -389,6 +389,7 @@ export default {
   computed: {
     chains() {
       const config = JSON.parse(localStorage.getItem('chains'))
+
       this.exludes.forEach(x => {
         delete config[x]
       })
@@ -399,8 +400,8 @@ export default {
         const { data } = addressDecode(this.accounts.address)
         return this.selected.map(x => {
           if (this.chains[x]) {
-            const { logo, addr_prefix } = this.chains[x]
-            const addr = addressEnCode(addr_prefix, data)
+            const { logo, addr_prefix, coin_type } = this.chains[x]
+            const addr = addressEnCode(addr_prefix, data, coin_type)
             return {
               chain: x, addr, logo, hdpath: this.hdpath,
             }

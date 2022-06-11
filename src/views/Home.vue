@@ -170,14 +170,9 @@ export default {
     BCardTitle,
     BDropdown,
     BDropdownItem,
-    BNav,
-    BNavItem,
-    BButton,
-
     VuexyLogo,
-    DarkToggler,
-    Locale,
     AppFooter,
+    FullHeader,
   },
   directives: {
     Ripple,
