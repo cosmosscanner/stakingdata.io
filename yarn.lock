@@ -8378,10 +8378,10 @@ sweetalert2@10.x:
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.16.9.tgz#8ed86f2fa811a136667a48357e204348705be8c9"
   integrity sha512-oNe+md5tmmS3fGfVHa7gVPlun7Td2oANSacnZCeghnrr3OHBi6UPVPU+GFrymwaDqwQspACilLRmRnM7aTjNPA==
 
-swiper@6.5.1:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.5.1.tgz#795630e45bbebb3b3b2945d55c22ffdcf5536c1b"
-  integrity sha512-iuyg4cr+L7wo5EI0fWUuW+lT3BnNtVTYtInhUC5JImTr0i8jNranx8BPyN8AOSKa6jBYN+oaCzj8DAwGK+ngRg==
+swiper@6.8.4:
+  version "6.8.4"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.8.4.tgz#938fed4144f4d7952fbf9c44e5832d133a4de794"
+  integrity sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g==
   dependencies:
     dom7 "^3.0.0"
     ssr-window "^3.0.0"
