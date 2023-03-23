@@ -18,7 +18,7 @@
     "@cosmjs/crypto": "^0.28.4",
     "@cosmjs/encoding": "^0.28.4",
     "@cosmjs/launchpad": "^0.27.1",
-    "@cosmjs/ledger-amino": "^0.28.4",
+    "@cosmjs/ledger-amino": "^0.29.5",
     "@cosmjs/math": "^0.28.4",
     "@cosmjs/proto-signing": "^0.28.6",
     "@cosmjs/stargate": "0.28.6",
