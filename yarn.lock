@@ -8901,23 +8901,18 @@ vue-context@6.0.0:
   dependencies:
     vue-clickaway "^2.2.2"
 
-vue-demi@*:
+vue-demi@*, vue-demi@^0.13.2:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
   integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
-vue-demi@^0.12.1:
-  version "0.12.5"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
-  integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
-
-vue-echarts@^6.0.2:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/vue-echarts/-/vue-echarts-6.0.3.tgz#502eb33f6e41fd088831f720a96154bf0a5c4e72"
-  integrity sha512-Nu+qb+szmBFCiVmNSZclquRx2lONGxfJXeppXODBYCl+KAdsP2TIaDwO2wfEFqU5jyxaL4b/qV7IYxswESTSFw==
+vue-echarts@^6.5.4:
+  version "6.5.4"
+  resolved "https://registry.yarnpkg.com/vue-echarts/-/vue-echarts-6.5.4.tgz#13b75999c75a36ea78d4e66fee67d82c88417ec0"
+  integrity sha512-pLJTk2hfhauoWdmiZGXByAtcO6bpfnAS+jkJqKimSBSV5I5ckh2nka9duLlIVbTvQOEb2tFa0XiXjACQNcEfpA==
   dependencies:
     resize-detector "^0.3.0"
-    vue-demi "^0.12.1"
+    vue-demi "^0.13.2"
 
 vue-eslint-parser@^8.0.0:
   version "8.3.0"
