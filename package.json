@@ -11,12 +11,12 @@
     "lint": "vue-cli-service lint",
     "analyz": "vue-cli-service build --report"
   },
-  "dependencies": {
+ "dependencies": {
     "@casl/ability": "4.1.6",
     "@casl/vue": "1.1.1",
     "@cosmjs/amino": "^0.28.4",
     "@cosmjs/crypto": "^0.29.5",
-    "@cosmjs/encoding": "^0.28.4",
+    "@cosmjs/encoding": "^0.29.5",
     "@cosmjs/launchpad": "^0.27.1",
     "@cosmjs/ledger-amino": "^0.29.5",
     "@cosmjs/math": "^0.28.4",
