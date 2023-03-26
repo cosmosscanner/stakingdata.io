@@ -23,9 +23,9 @@
     "@cosmjs/proto-signing": "^0.28.6",
     "@cosmjs/stargate": "0.28.6",
     "@intlify/vue-i18n-loader": "^2.1.2",
-    "@ledgerhq/hw-app-eth": "^6.28.2",
+    "@ledgerhq/hw-app-eth": "^6.31.0",
     "@ledgerhq/hw-transport-web-ble": "^6.27.1",
-    "@ledgerhq/hw-transport-webusb": "^6.27.11",
+    "@ledgerhq/hw-transport-webusb": "^6.27.1",
     "@tharsis/address-converter": "^0.1.7",
     "@tharsis/transactions": "^0.2.2",
     "@vue/composition-api": "^1.4.9",
@@ -89,7 +89,7 @@
     "vuedraggable": "2.24.3",
     "vuex": "3.6.0"
   },
-  "devDependencies": {
+ "devDependencies": {
     "@babel/eslint-parser": "^7.5.4",
     "@protobufs/osmosis": "^0.0.8",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
