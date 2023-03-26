@@ -24,7 +24,6 @@
     "@cosmjs/stargate": "0.28.6",
     "@intlify/vue-i18n-loader": "^2.1.2",
     "@ledgerhq/hw-app-eth": "^6.28.2",
-    "snyk-upgrade-4bded0cca965a5aee28d65874061dc4c,
     "@ledgerhq/hw-transport-web-ble": "^6.27.1",
     "@ledgerhq/hw-transport-webusb": "^6.27.11",
     "@tharsis/address-converter": "^0.1.7",
