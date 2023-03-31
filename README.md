@@ -32,7 +32,7 @@ Ping.pub states that they remain neutral to all chains, and they do not comment 
 There are two main reasons:
 
    - Trust, in a decentralized system, anything controlled by one entity cannot be trusted. So Ping.pub decided to build with the community.
-   - Limited resources: `Ping Dashboard` will list hundreds of cosmos-based blockchains in the future, and it is impossible for our team to run validators or full nodes for all of them.
+   - Limited resources: `Ping Dashboard` will list hundreds of cosmos-based blockchains in the future, and it is impossible for the Ping.pub team to run validators or full nodes for all of them.
 
 
 ## Donation
