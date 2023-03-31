@@ -56,7 +56,7 @@ Your donation will help Ping.pub make better products. Thanks in advance.
 
 ## Hire us
 
-You can hire Pingpub by submiting an issue and fund the issue on [IssueHunter](https://issuehunt.io/r/ping-pub/explorer)
+You can hire Ping.pub by submiting an issue and fund the issue on [IssueHunter](https://issuehunt.io/r/ping-pub/explorer)
 
 
 ## Contributors
