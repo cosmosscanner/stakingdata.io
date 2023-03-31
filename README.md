@@ -23,7 +23,7 @@
 
 ## Do you want to list your blockchain on ping.pub?
 
-Submit your pull request [here](./src/chains), We will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
+Submit your pull request [here](./src/chains). Ping.pub will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
 
 We remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
 
