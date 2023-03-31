@@ -4,7 +4,7 @@
 
 <h1>Staking Data Dashboard</h1>
 
-**This is a Ping.pub fork by DECALI.io - this repo do not have wallet connections and therefore a good option for the US based validators.**
+**This is a Ping.pub fork by DECALI.io - This repo do not have wallet connections and therefore a good option for the US based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
@@ -15,11 +15,11 @@
 
 </div>
 
-`DECALI Dashboard` is a light explorer for Cosmos-based Blockchains - a forked version of the popular Ping.pub app - https://ping.pub.
+`Stakingdata.io Dashboard` is a light explorer for Cosmos-based Blockchains - a forked version of the popular Ping.pub app - https://ping.pub.
 
-## What is the difference between Ping explorer and other explorers? 
+## What is the difference between Stakingdata.io explorer and other explorers? 
 
-`DECALI Dashboard` is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Staking Data (a Ping.pub fork) Dashboard` only fetch data from Cosmos full node via LCD/RPC endpoints. We call it "Light Explorer".
+`DECALI Dashboard` is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Staking Data (a Ping.pub fork) Dashboard` only fetch data from Cosmos full node via LCD/RPC endpoints. Ping.pub calls it "Light Explorer".
 
 ## Do you want to list your blockchain on ping.pub?
 
@@ -27,7 +27,7 @@ Submit your pull request [here](./src/chains), We will add your chains as soon a
 
 We remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
 
-## Why Ping explorer use official/trusted third party public LCD/rpc server? 
+## Why Stakingdata/Ping explorer use official/trusted third party public LCD/rpc server? 
 
 There are two main reasons:
 
@@ -61,5 +61,5 @@ You can hire us by submiting an issue and fund the issue on [IssueHunter](https:
 
 ## Contributors
 
-Developers: @liangping @dingyiming | This fork @cosmosscanner
+Developers: @liangping @dingyiming | This fork is developed by @cosmosscanner and hello@decali.io
 
