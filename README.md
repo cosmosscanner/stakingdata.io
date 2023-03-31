@@ -2,9 +2,9 @@
 
 ![Stakingdata.io](./public/logo.svg)
 
-<h1>Staking Data Dashboard</h1>
+<h1>Stakingdata.io Dashboard</h1>
 
-**This is a Ping.pub fork by DECALI.io - This repo do not have wallet connections and therefore a good option for the US based validators.**
+**This is a Ping.pub fork by DECALI.io - the repo do not have wallet connections and therefore a good option for the US based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
@@ -19,7 +19,7 @@
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
-`DECALI Dashboard` is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Staking Data (a Ping.pub fork) Dashboard` only fetch data from Cosmos full node via LCD/RPC endpoints. Ping.pub calls it "Light Explorer".
+`Dashboard` is designed by Ping.pub, to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Stakingdata.io Dashboard` only fetch data from Cosmos full node via LCD/RPC endpoints. Ping.pub calls it a "Light Explorer".
 
 ## Do you want to list your blockchain on ping.pub?
 
