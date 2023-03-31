@@ -25,13 +25,13 @@
 
 Submit your pull request [here](./src/chains). Ping.pub will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
 
-Ping.pub states that they remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
+Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
 
 ## Why Stakingdata/Ping explorer use official/trusted third party public LCD/rpc server? 
 
 There are two main reasons:
 
-   - Trust, in a decentralized system, anything controlled by one entity cannot be trusted. So we decided to build with the community.
+   - Trust, in a decentralized system, anything controlled by one entity cannot be trusted. So Ping.pub decided to build with the community.
    - Limited resources: `Ping Dashboard` will list hundreds of cosmos-based blockchains in the future, and it is impossible for our team to run validators or full nodes for all of them.
 
 
