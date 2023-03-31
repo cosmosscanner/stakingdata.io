@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+/dist
 
 # local env files
 .env.local
@@ -26,3 +27,10 @@ yarn-error.log*
 
 # Docs
 /docs/.temp
+
+# Yarn
+.yarn/
+.yarnrc.yml
+package-lock.json
+yarn.lock
+pkg/

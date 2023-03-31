@@ -214,6 +214,11 @@ export default {
     loadData() {
       this.$http.getValidatorList().then(v => {
         this.validators = v
+        if (!this.selectedValidator) {
+          const r = Math.random()
+          const index = (r * v.length).toFixed()
+          this.selectedValidator = v[index].operator_address
+        }
       })
       this.$http.getValidatorUnbondedList().then(v => {
         this.unbundValidators = v
@@ -230,7 +235,9 @@ export default {
       return formatTokenDenom(this.token)
     },
     format(v) {
-      return formatToken(v, this.IBCDenom, 6)
+      const conf = this.$http.getSelectedConfig()
+      const decimal = conf.assets[0].exponent || '6'
+      return formatToken(v, this.IBCDenom, decimal)
     },
   },
 }

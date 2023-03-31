@@ -6,15 +6,6 @@
   >
     <b-nav-item><dark-toggler /></b-nav-item>
     <b-nav-item><locale /></b-nav-item>
-    <b-button
-      v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-      variant="primary"
-      class="btn-icon mt-25"
-      :to="{ name: 'accounts' }"
-    >
-      <feather-icon icon="KeyIcon" />
-      <span class="align-middle ml-25">Wallet</span>
-    </b-button>
   </b-nav>
 </template>
 

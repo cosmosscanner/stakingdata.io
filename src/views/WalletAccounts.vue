@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <b-card
-      v-if="calculateTotalChange !== 0"
+      v-if="calculateTotal !== '0'"
       border-variant="primary"
     >
       <b-row class="mx-0 d-flex align-items-center">
@@ -93,16 +93,23 @@
             <span class="align-middle">{{ item.name }}</span>
           </b-button>
           <div class="mr-50">
-            <router-link
+            <b-button
               :to="`/wallet/import?name=${item.name}`"
-              class="mr-50"
+              variant="flat-primary"
+              size="sm"
+              class="d-none d-md-inline-block"
             >
-              <feather-icon
-                icon="EditIcon"
-                class="mr-10"
-              />
+              <feather-icon icon="EditIcon" />
               <span class="align-middle">Edit</span>
-            </router-link>
+            </b-button>
+            <b-button
+              variant="flat-danger"
+              size="sm"
+              @click="disconnect(item.name)"
+            >
+              <feather-icon icon="EyeOffIcon" />
+              <span class="align-middle">Disconnect</span>
+            </b-button>
           </div>
         </div>
 
@@ -200,7 +207,6 @@
                           </div>
                         </div>
                         <b-button
-                          v-if="balances[acc.addr]"
                           block
                           size="sm"
                           variant="outline-primary"
@@ -251,7 +257,7 @@ import ToastificationContent from '@core/components/toastification/Toastificatio
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
 import OperationModal from '@/views/components/OperationModal/index.vue'
-import ChartComponentDoughnut from './ChartComponentDoughnut.vue'
+import ChartComponentDoughnut from './components/charts/ChartComponentDoughnut.vue'
 import EchartScatter from './components/charts/EchartScatter.vue'
 
 export default {
@@ -359,8 +365,9 @@ export default {
       const total = []
       if (this.calculateByDenom.qty) {
         Object.entries(this.calculateByDenom.qty).forEach(i => {
-          const price = this.getPrice(i[0])
-          total.push([Math.sqrt(i[1]), Math.sqrt(price), i[1] * price, i[0]])
+          const price = this.getPrice(i[0], 'usd')
+          // x, y, circle
+          total.push([Math.sqrt(i[1]), i[1] * price, price, i[0]])
         })
       }
       return total.sort((a, b) => b[2] - a[2])
@@ -439,22 +446,23 @@ export default {
   created() {
     this.init()
   },
-  mounted() {
-  },
   methods: {
     refreshPrice() {
       this.$store.dispatch('chains/getQuotes')
     },
     init() {
+      this.balances = {}
+      this.delegations = {}
       this.accounts = getLocalAccounts()
       const chains = getLocalChains()
       if (this.accounts) {
         Object.keys(this.accounts).forEach(acc => {
           this.accounts[acc].address.forEach(add => {
             this.$http.getBankBalances(add.addr, chains[add.chain]).then(res => {
-              if (res && res.length > 0) {
-                this.$set(this.balances, add.addr, res)
-                res.forEach(token => {
+              const { balances } = res
+              if (balances && balances.length > 0) {
+                this.$set(this.balances, add.addr, balances)
+                balances.forEach(token => {
                   if (token.denom.startsWith('ibc')) {
                     this.$http.getIBCDenomTrace(token.denom, chains[add.chain]).then(denom => {
                       this.$set(this.ibcDenom, token.denom, denom)
@@ -524,10 +532,10 @@ export default {
       }
       return ''
     },
-    getPrice(denom) {
+    getPrice(denom, currency = null) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
-      return quote ? quote[this.currency2] || 0 : 0
+      return quote ? quote[currency || this.currency2 || 'usd'] || 0 : 0
     },
     getChanges(denom) {
       const d2 = this.formatDenom(denom)
@@ -591,12 +599,21 @@ export default {
         const item = this.accounts[key]
         const newAddrs = item.address.filter(a => a.addr !== v)
         if (newAddrs.length > 0) {
+          this.$delete(this.balances, v)
+          this.$delete(this.delegations, v)
           this.$set(item, 'address', newAddrs)
+          localStorage.setItem('accounts', JSON.stringify(this.accounts))
         } else {
           delete this.accounts[key]
+          localStorage.setItem('accounts', JSON.stringify(this.accounts))
+          this.init()
         }
       })
+    },
+    disconnect(key) {
+      delete this.accounts[key]
       localStorage.setItem('accounts', JSON.stringify(this.accounts))
+      this.init()
     },
     updateDefaultWallet(v) {
       this.$store.commit('setDefaultWallet', v)
@@ -634,7 +651,7 @@ export default {
     box-shadow: none;
 }
 .addzone :hover {
-    border: 2px dashed #ff914d;
+    border: 2px dashed #7367F0;
 }
 
 </style>

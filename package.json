@@ -1,9 +1,9 @@
 {
-  "name": "decaliscanner",
+  "name": "ping-wallet",
   "license": "GPL-2.0",
   "version": "0.1.0",
   "author": {
-    "name": "decali.io"
+    "name": "ping.pub"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

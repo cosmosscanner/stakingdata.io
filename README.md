@@ -1,10 +1,10 @@
 <div align="center">
 
-![Ping Wallet](./public/logo.svg)
+![Stakingdata.io](./public/logo.svg)
 
-<h1>Ping Explorer</h1>
+<h1>Staking Data Dashboard</h1>
 
-**Ping explorer is not only an explorer but also a wallet and more ... 🛠**
+**This is a Ping.pub fork by DECALI.io - this repo do not have wallet connections and therefore a good option for the US based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
@@ -15,78 +15,51 @@
 
 </div>
 
-Ping Explorer is a light explorer for Cosmos-based Blockchains.  https://ping.pub .
+`DECALI Dashboard` is a light explorer for Cosmos-based Blockchains - a forked version of the popular Ping.pub app - https://ping.pub.
 
 ## What is the difference between Ping explorer and other explorers? 
 
-Ping Explorer is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. Ping Explorer does not cache/save blockchain data on its server. Ping Explorer only fetch data from Cosmos full node via LCD/RPC endpoints. We call it "Light Explorer".
+`DECALI Dashboard` is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Staking Data (a Ping.pub fork) Dashboard` only fetch data from Cosmos full node via LCD/RPC endpoints. We call it "Light Explorer".
 
 ## Do you want to list your blockchain on ping.pub?
 
-Pull your request [here](./src/chains), We will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
+Submit your pull request [here](./src/chains), We will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
+
+We remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
 
 ## Why Ping explorer use official/trusted third party public LCD/rpc server? 
 
-We have two considerations: 1, Trust, In decentralize system, everything controlled by one single team/organization could be risks. So we decided to co-build with the community. 2. We will list hundreds cosmos-based blockchains in the future, it's impossible for our team to run validators or fullnodes for all of those chains.
+There are two main reasons:
 
-# Installation:
+   - Trust, in a decentralized system, anything controlled by one entity cannot be trusted. So we decided to build with the community.
+   - Limited resources: `Ping Dashboard` will list hundreds of cosmos-based blockchains in the future, and it is impossible for our team to run validators or full nodes for all of them.
 
-1. Running with yarn
+
+## Donation
+
+Your donation will help us make better products. Thanks in advance.
+
+ - Address for ERC20: USDC, USDT, ETH
 ```
-yarn && yarn serve
-```
-
-2. Building for web servers, like nginx, apache
-```
-yarn && yarn build
-cp -r ./dist/* <ROOT_OF_WEB_SERVER>
-```
-
-# Enable LCD for Ping.pub (do this on the config for your chain)
-
-1. Set `enable = true` in `./config/app.toml`
-```
-###############################################################################
-###                           API Configuration                             ###
-###############################################################################
-
-[api]
-
-# Enable defines if the API server should be enabled.
-enable = true
-
-# Swagger defines if swagger documentation should automatically be registered.
-swagger = false
-
-# Address defines the API server to listen on.
-address = "tcp://0.0.0.0:1317"
-
-# MaxOpenConnections defines the number of maximum open connections.
-max-open-connections = 1000
+0x88BFec573Dd3E4b7d2E6BfD4D0D6B11F843F8aa1
 ```
 
-2. add proxy server and enable CORS. NOTE: You must enable https as well.
+ - You can donate any token in the Cosmos ecosystem: [here](https://ping.pub/coffee)
 
-```
-server {
-    server_name juno.api.ping.pub;
-    listen 443;
-    location / {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Max-Age 3600;
-        add_header Access-Control-Expose-Headers Content-Length;
+> If you are an individual please do not donate more than $10, a cup of coffee means a lot to us.
 
-        proxy_pass http://<HOST>:1317;
+#### Donations from project
 
-    }
-}
-```
-3. config your blockchain in [./src/chains]()
+- Point Network: 1000USDC and $1000 worth of POINT
+- Bitsong: 50k BTSG
+- IRISnet: 100k IRIS
 
+## Hire us
 
+You can hire us by submiting an issue and fund the issue on [IssueHunter](https://issuehunt.io/r/ping-pub/explorer)
 
 
 ## Contributors
 
-Developers: @liangping @dingyiming
+Developers: @liangping @dingyiming | This fork @cosmosscanner
 

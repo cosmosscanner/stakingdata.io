@@ -14,7 +14,7 @@
     </b-alert>
     <form-wizard
       ref="wizard"
-      color="#ff914d"
+      color="#7367F0"
       :title="null"
       :subtitle="null"
       shape="square"
@@ -35,7 +35,7 @@
           <b-row>
             <b-col md="12">
               <b-form-group
-                label="Select a device to import accounts"
+                label="Select a device to connect"
                 label-for="device"
               >
                 <validation-provider
@@ -72,6 +72,14 @@
                       class="mb-1"
                     >
                       Ledger via Bluetooth
+                    </b-form-radio>
+                    <b-form-radio
+                      v-model="device"
+                      name="device"
+                      value="metamask"
+                      class="mb-1 d-none"
+                    >
+                      Metamask
                     </b-form-radio>
                     <b-form-radio
                       v-model="device"
@@ -190,7 +198,7 @@
             </b-col>
             <b-col md="12">
               <b-form-group
-                label="Import Address For Chains:"
+                label="Derivate Address For Chains:"
               >
                 <validation-provider
                   #default="{ errors }"
@@ -321,6 +329,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 // import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import MetaMaskSigner from '@/libs/client/MetaMaskSigner'
 import {
   BAlert,
   BRow,
@@ -342,6 +351,7 @@ import {
   addressDecode, addressEnCode, getLedgerAddress, getLocalAccounts,
 } from '@/libs/utils'
 import { toHex } from '@cosmjs/encoding'
+import { stringToPath } from '@cosmjs/crypto'
 
 export default {
   components: {
@@ -454,15 +464,20 @@ export default {
       }
     },
     initParamsForKeplr(chainid, chain) {
+      const gasPriceStep = chain.keplr_price_step || {
+        low: 0.01,
+        average: 0.025,
+        high: 0.03,
+      }
       return JSON.stringify({
         chainId: chainid,
         chainName: chain.chain_name,
         rpc: Array.isArray(chain.rpc) ? chain.rpc[0] : chain.rpc,
         rest: Array.isArray(chain.api) ? chain.api[0] : chain.api,
         bip44: {
-          coinType: chain.coin_type,
+          coinType: Number(chain.coin_type),
         },
-        coinType: chain.coin_type,
+        coinType: Number(chain.coin_type),
         bech32Config: {
           bech32PrefixAccAddr: chain.addr_prefix,
           bech32PrefixAccPub: `${chain.addr_prefix}pub`,
@@ -475,7 +490,7 @@ export default {
           {
             coinDenom: chain.assets[0].symbol,
             coinMinimalDenom: chain.assets[0].base,
-            coinDecimals: chain.assets[0].exponent,
+            coinDecimals: Number(chain.assets[0].exponent),
             coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
           },
         ],
@@ -483,21 +498,19 @@ export default {
           {
             coinDenom: chain.assets[0].symbol,
             coinMinimalDenom: chain.assets[0].base,
-            coinDecimals: chain.assets[0].exponent,
+            coinDecimals: Number(chain.assets[0].exponent),
             coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
+            gasPriceStep,
           },
         ],
+        gasPriceStep,
         stakeCurrency: {
           coinDenom: chain.assets[0].symbol,
           coinMinimalDenom: chain.assets[0].base,
-          coinDecimals: chain.assets[0].exponent,
+          coinDecimals: Number(chain.assets[0].exponent),
           coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
         },
-        gasPriceStep: {
-          low: 0.01,
-          average: 0.025,
-          high: 0.03,
-        },
+        features: chain.keplr_features || [],
       }, null, '\t')
     },
     formatPubkey(v) {
@@ -523,6 +536,14 @@ export default {
       await window.keplr.enable(chainId)
       const offlineSigner = window.getOfflineSigner(chainId)
       return offlineSigner.getAccounts()
+    },
+    async connectMetamask() {
+      if (!window.ethereum) {
+        this.debug = 'Please install Metamask extension'
+        return null
+      }
+      const signer = MetaMaskSigner.create(stringToPath(this.hdpath))
+      return signer.getAccounts()
     },
     localAddress() {
       if (!this.address) return false
@@ -575,6 +596,17 @@ export default {
                 this.accounts = accounts[0]
                 ok = true
               }
+            })
+            break
+          case 'metamask':
+            await this.connectMetamask().then(accounts => {
+              if (accounts) {
+              // eslint-disable-next-line prefer-destructuring
+                this.accounts = accounts[0]
+                ok = true
+              }
+            }).catch(e => {
+              this.debug = e
             })
             break
           case 'ledger':

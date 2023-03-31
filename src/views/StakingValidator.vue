@@ -21,16 +21,11 @@
                 <h4 class="mb-0">
                   {{ validator.description.moniker }}
                 </h4>
-                <span class="card-text">{{ validator.description.website }}</span>
-              </div>
-              <div class="d-flex flex-wrap">
-                <b-button
-                  v-b-modal.operation-modal
-                  variant="primary"
-                  class="mr-25 mb-25"
-                >
-                  Delegate
-                </b-button>
+                <span class="card-text">
+                  <b-link :href="validator.description.website">
+                    {{ validator.description.website }}
+                  </b-link>
+                </span>
               </div>
             </div>
           </div>
@@ -123,13 +118,7 @@
                 <span class="font-weight-bold">Status</span>
               </th>
               <td class="pb-50 text-capitalize">
-                <b-badge
-                  v-if="validator.status===3"
-                  variant="light-success"
-                >
-                  Active
-                </b-badge>
-                <span v-else>{{ validator.status }}</span>
+                <span>{{ String(validator.status).replace('BOND_STATUS_', '') }}</span>
               </td>
             </tr>
             <tr>
@@ -189,7 +178,7 @@
                 <span class="font-weight-bold">Contact</span>
               </th>
               <td>
-                {{ validator.security_contact || '-' }}
+                {{ validator.description.security_contact || '-' }}
               </td>
             </tr>
           </table>
@@ -204,70 +193,68 @@
       </b-card-footer>
     </b-card>
     <!-- First Row -->
-    <template>
-      <b-row class="match-height">
-        <b-col
-          lg="4"
-          md="12"
-        >
-          <staking-commission-component :data="validator.commission" />
-        </b-col>
-        <b-col
-          lg="4"
-          md="12"
-        >
-          <staking-reward-component
-            :data="distribution"
-            :validator="validator.operator_address"
-            :address="accountAddress"
+    <b-row class="match-height">
+      <b-col
+        lg="4"
+        md="12"
+      >
+        <staking-commission-component :data="validator.commission" />
+      </b-col>
+      <b-col
+        lg="4"
+        md="12"
+      >
+        <staking-reward-component
+          :data="distribution"
+          :validator="validator.operator_address"
+          :address="accountAddress"
+        />
+      </b-col>
+      <b-col
+        lg="4"
+        md="12"
+      >
+        <staking-address-component
+          :hex-address="hexAddress"
+          :operator-address="validator.operator_address"
+          :consensus-pubkey="validator.consensus_pubkey"
+          :account-address="accountAddress"
+          :valcons-address="valconsAddress"
+        />
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-card title="Transactions">
+          <b-table
+            :items="txs"
+            striped
+            hover
+            responsive="sm"
+            stacked="sm"
+          >
+            <template #cell(height)="data">
+              <router-link :to="`../blocks/${data.item.height}`">
+                {{ data.item.height }}
+              </router-link>
+            </template>
+            <template #cell(txhash)="data">
+              <router-link :to="`../tx/${data.item.txhash}`">
+                {{ formatHash(data.item.txhash) }}
+              </router-link>
+            </template>
+          </b-table>
+          <b-pagination
+            v-if="Number(transactions.page_total) > 1"
+            :total-rows="transactions.total_count"
+            :per-page="transactions.limit"
+            :value="transactions.page_number"
+            class="mt-1"
+            @change="pageload"
           />
-        </b-col>
-        <b-col
-          lg="4"
-          md="12"
-        >
-          <staking-address-component
-            :hex-address="hexAddress"
-            :operator-address="validator.operator_address"
-            :consensus-pubkey="validator.consensus_pubkey"
-            :account-address="accountAddress"
-          />
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <b-card title="Transactions">
-            <b-table
-              :items="txs"
-              striped
-              hover
-              responsive="sm"
-              stacked="sm"
-            >
-              <template #cell(height)="data">
-                <router-link :to="`../blocks/${data.item.height}`">
-                  {{ data.item.height }}
-                </router-link>
-              </template>
-              <template #cell(txhash)="data">
-                <router-link :to="`../tx/${data.item.txhash}`">
-                  {{ formatHash(data.item.txhash) }}
-                </router-link>
-              </template>
-            </b-table>
-            <b-pagination
-              v-if="Number(transactions.page_total) > 1"
-              :total-rows="transactions.total_count"
-              :per-page="transactions.limit"
-              :value="transactions.page_number"
-              align="center"
-              class="mt-1"
-              @change="pageload"
-            />
-          </b-card>
-        </b-col>
-      </b-row>
-    </template>
+        </b-card>
+      </b-col>
+    </b-row>
     <operation-modal
       type="Delegate"
       :validator-address="validator.operator_address"
@@ -278,17 +265,17 @@
 
 <script>
 import {
-  BCard, BButton, BAvatar, BRow, BCol, BTable, BCardFooter, VBTooltip, VBModal, BBadge, BPagination,
+  BCard, BButton, BAvatar, BRow, BCol, BTable, BCardFooter, VBTooltip, VBModal, BBadge, BPagination, BLink,
 } from 'bootstrap-vue'
 
 import {
-  percent, formatToken, StakingParameters, Validator, operatorAddressToAccount, consensusPubkeyToHexAddress, toDay, abbrMessage, abbrAddress,
+  percent, formatToken, StakingParameters, Validator, operatorAddressToAccount, consensusPubkeyToHexAddress, toDay, abbrMessage, abbrAddress, valoperToPrefix, pubKeyToValcons,
 } from '@/libs/utils'
 import { keybase } from '@/libs/fetch'
 import OperationModal from '@/views/components/OperationModal/index.vue'
-import StakingAddressComponent from './StakingAddressComponent.vue'
-import StakingCommissionComponent from './StakingCommissionComponent.vue'
-import StakingRewardComponent from './StakingRewardComponent.vue'
+import StakingAddressComponent from './components/staking/StakingAddressComponent.vue'
+import StakingCommissionComponent from './components/staking/StakingCommissionComponent.vue'
+import StakingRewardComponent from './components/staking/StakingRewardComponent.vue'
 
 export default {
   components: {
@@ -301,6 +288,7 @@ export default {
     BBadge,
     BPagination,
     BTable,
+    BLink,
     StakingAddressComponent,
     StakingCommissionComponent,
     StakingRewardComponent,
@@ -323,6 +311,7 @@ export default {
       latestHeight: 0,
       accountAddress: '-',
       hexAddress: '-',
+      valconsAddress: '-',
       stakingPool: {},
       mintInflation: 0,
       stakingParameter: new StakingParameters(),
@@ -393,8 +382,10 @@ export default {
       return percent(value)
     },
     processAddress(operAddress, consensusPubkey) {
+      const prefix = valoperToPrefix(operAddress)
       this.accountAddress = operatorAddressToAccount(operAddress)
       this.hexAddress = consensusPubkeyToHexAddress(consensusPubkey)
+      this.valconsAddress = pubKeyToValcons(consensusPubkey, prefix)
       this.$http.getStakingDelegatorDelegation(this.accountAddress, operAddress).then(d => {
         this.selfDelegation = d
       })

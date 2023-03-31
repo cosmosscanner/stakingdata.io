@@ -21,12 +21,12 @@
       show
     >
       <div class="alert-heading">
-        Tips
+        {{ $t('uptimeMyValidators.tips') }}
       </div>
       <div class="alert-body">
-        There are two ways to monitor your validators:
-        <li> Pin a validator on Uptime pages.</li>
-        <li> Specify parameters like following: <pre>https://ping.pub/cosmos/uptime/my?validators={"sifchain":["FBADE9A30473BB9ED6DFA16BFB3838E028F33650"],"chain_name":["hexAddress"]}</pre></li>
+        {{ $t('uptimeMyValidators.two_ways') }}
+        <li> {{ $t('uptimeMyValidators.pin') }}</li>
+        <li> {{ $t('uptimeMyValidators.link') }} <pre>https://ping.pub/cosmos/uptime/my?validators={"sifchain":["FBADE9A30473BB9ED6DFA16BFB3838E028F33650"],"chain_name":["hexAddress"]}</pre></li>
       </div>
     </b-alert>
   </div>
@@ -37,6 +37,7 @@ import {
   BRow, BCol, VBTooltip, BAlert,
 } from 'bootstrap-vue'
 import { consensusPubkeyToHexAddress, getCachedValidators, getLocalChains } from '@/libs/utils'
+import { fromHex, toBase64 } from '@cosmjs/encoding'
 import UptimeMyChainBlocks from './UptimeMyChainBlocks.vue'
 
 export default {
@@ -71,7 +72,7 @@ export default {
         if (cached) {
           const validators = []
           pinned[x].forEach(address => {
-            const val = cached.find(v => address === consensusPubkeyToHexAddress(v.consensus_pubkey))
+            const val = cached.find(v => address === this.hex2base64(consensusPubkeyToHexAddress(v.consensus_pubkey)))
             if (val) validators.push({ address, validator: val.description })
           })
           chainVals[x] = validators
@@ -79,7 +80,7 @@ export default {
           this.$http.getValidatorList(configs[x]).then((vals => {
             const validators = []
             pinned[x].forEach(address => {
-              const val = vals.find(v => address === consensusPubkeyToHexAddress(v.consensus_pubkey))
+              const val = vals.find(v => address === this.hex2base64(consensusPubkeyToHexAddress(v.consensus_pubkey)))
               if (val) validators.push({ address, validator: val.description })
             })
             this.$set(this.chainVals, x, validators)
@@ -91,6 +92,11 @@ export default {
     return {
       chainVals,
     }
+  },
+  methods: {
+    hex2base64(v) {
+      return toBase64(fromHex(v))
+    },
   },
 }
 </script>

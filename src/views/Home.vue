@@ -1,46 +1,20 @@
 <template>
-  <div class="text-center container-lg mt-1">
-    <b-nav
-      align="right"
-      style="width:100%"
-      class="nav text-right text-nowrap ml-auto"
-    >
-      <b-nav-item><dark-toggler /></b-nav-item>
-      <b-nav-item><locale /></b-nav-item>
-      <b-button
-        v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-        variant="primary"
-        class="btn-icon mt-25"
-        :to="{ name: 'accounts' }"
-      >
-        <feather-icon icon="KeyIcon" />
-        <span class="align-middle ml-25">Wallet</span>
-      </b-button>
-    </b-nav>
-    <b-link
-      to="/decentr/staking/decentrvaloper1th4h3j6fu9kffyhqly52uy0ku9c5f0shmskp68"
-      class=""
-    >
-      <div class="d-flex align-items-center justify-content-center">
-        <div
-          style="height: 150px !important; width: 100%"
-          class="d-flex my-3 justify-content-center align-items-end"
-        >
-          <vuexy-logo />
-          <div class="d-flex my-2 justify-content-center align-items-center">
-            <p class="font-weight-bolder d-md-flex text-right text-md-center" style="color: #5e5873; font-size: 12px;">
-              <span style="" class="d-md-none">STAKE WITH US.</span> <br class="d-md-none" />
-              24/7 MONITORED SERVICE.<br class="d-md-none" /> 1% COMMISSION UNTIL EOY 2022. 
-              <span class="d-none d-md-block" style="padding-left:3px;">STAKE WITH US.</span>
-            </p>
-          </div>
-        </div>
+  <div class="text-center container-lg">
+    <full-header />
+    <b-link>
+      <div class="d-flex justify-content-center align-items-center p-1">
+        <vuexy-logo />
       </div>
     </b-link>
+
+    <p class="mb-1">
+      Staking Data by DECALI.io ⚛️
+    </p>
+
     <div>
       <b-row class="match-height">
         <b-col
-          v-for="(data, index) in chains"
+          v-for="(data,index) in chains"
           :key="index"
           v-observe-visibility="(visible) => visibilityChanged(visible, data)"
           sm="6"
@@ -49,15 +23,13 @@
           xl="3"
         >
           <router-link :to="data.chain_name">
-            <b-card v-if="data" class="earnings-card text-left">
+            <b-card
+              v-if="data"
+              class="earnings-card text-left"
+            >
               <div>
                 <b-card-title class="mb-1 d-flex justify-content-between">
-                  <span class="text-uppercase"
-                    >{{ data.chain_name }}
-                    <small class="font-small-2">{{
-                      data.sdk_version
-                    }}</small></span
-                  >
+                  <span class="text-uppercase">{{ data.chain_name }} <small class="font-small-2">{{ data.sdk_version }}</small></span>
                   <b-dropdown
                     class="ml-1"
                     variant="link"
@@ -96,7 +68,7 @@
                       Height
                     </div>
                     <h5 class="mb-1">
-                      {{ data.height || "0" }}
+                      {{ data.height || '0' }}
                     </h5>
                   </div>
                   <div>
@@ -112,10 +84,7 @@
                   </div>
                 </div>
                 <b-card-text class="text-muted font-small-2">
-                  <span> Updated on </span
-                  ><span class="font-weight-bolder">{{
-                    data.time || "..."
-                  }}</span>
+                  <span> Updated on </span><span class="font-weight-bolder">{{ data.time || '...' }}</span>
                 </b-card-text>
               </div>
             </b-card>
@@ -123,7 +92,11 @@
         </b-col>
 
         <!-- no result found -->
-        <b-col v-show="!chains" cols="12" class="text-center">
+        <b-col
+          v-show="!chains"
+          cols="12"
+          class="text-center"
+        >
           <h4 class="mt-4">
             No blockchain found!!
           </h4>
@@ -138,37 +111,20 @@
 <script>
 /* eslint-disable global-require */
 import {
-  BLink,
-  BAvatar,
-  BRow,
-  BCol,
-  BCard,
-  BCardText,
-  BCardTitle,
-  BNav,
-  BNavItem,
-  BButton,
-  BDropdown,
-  BDropdownItem,
-} from "bootstrap-vue";
-import Ripple from "vue-ripple-directive";
-import VuexyLogo from "@core/layouts/components/Logo.vue";
-import store from "@/store/index";
-import { timeIn, toDay } from "@/libs/utils";
-import DarkToggler from "@/@core/layouts/components/app-navbar/components/DarkToggler.vue";
-import Locale from "@/@core/layouts/components/app-navbar/components/Locale.vue";
-import AppFooter from "@/@core/layouts/components/AppFooter.vue";
+  BLink, BAvatar, BRow, BCol, BCard, BCardText, BCardTitle, BDropdown, BDropdownItem,
+} from 'bootstrap-vue'
+import Ripple from 'vue-ripple-directive'
+import VuexyLogo from '@core/layouts/components/Logo.vue'
+import store from '@/store/index'
+import { timeIn, toDay, getLocalChains } from '@/libs/utils'
+import AppFooter from '@/@core/layouts/components/AppFooter.vue'
+import FullHeader from './components/FullHeader.vue'
 
 export default {
   components: {
     BLink,
     BAvatar,
     BRow,
-    BNav,
-    BNavItem,
-    Locale,
-    BButton,
-    DarkToggler,
     BCol,
     BCard,
     BCardText,
@@ -177,56 +133,56 @@ export default {
     BDropdownItem,
     VuexyLogo,
     AppFooter,
+    FullHeader,
   },
   directives: {
     Ripple,
   },
   data() {
-    const chains = this.$store.state.chains.config;
+    const chains = this.$store.state.chains.config
     return {
       chains,
-      downImg: require("@/assets/images/pages/under-maintenance.svg"),
-    };
+      downImg: require('@/assets/images/pages/under-maintenance.svg'),
+    }
   },
   computed: {
     imgUrl() {
-      if (store.state.appConfig.layout.skin === "dark") {
+      if (store.state.appConfig.layout.skin === 'dark') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.downImg = require("@/assets/images/pages/under-maintenance-dark.svg");
-        return this.downImg;
+        this.downImg = require('@/assets/images/pages/under-maintenance-dark.svg')
+        return this.downImg
       }
-      return this.downImg;
+      return this.downImg
     },
+  },
+  beforeCreate() {
+    const keys = Object.keys(getLocalChains())
+    if (keys.length === 1) {
+      this.$router.push(`/${keys[0]}`)
+    }
   },
   methods: {
     fetch(k) {
-      const chain = this.chains[k];
+      const chain = this.chains[k]
       if (chain.api) {
-        const index =
-          localStorage.getItem(`${chain.chain_name}-api-index`) || 0;
-        const host = Array.isArray(chain.api) ? chain.api[index] : chain.api;
-        fetch(`${host}/blocks/latest`)
-          .then((res) => res.json())
-          .then((b) => {
-            const { header } = b.block;
-            this.$set(chain, "height", header.height);
-            this.$set(chain, "time", toDay(header.time));
-            this.$set(
-              chain,
-              "variant",
-              timeIn(header.time, 3, "m") ? "danger" : "success"
-            );
-          });
+        const index = localStorage.getItem(`${chain.chain_name}-api-index`) || 0
+        const host = Array.isArray(chain.api) ? chain.api[index] : chain.api
+        fetch(`${host}/cosmos/base/tendermint/v1beta1/blocks/latest`).then(res => res.json()).then(b => {
+          const { header } = b.block
+          this.$set(chain, 'height', header.height)
+          this.$set(chain, 'time', toDay(header.time))
+          this.$set(chain, 'variant', timeIn(header.time, 3, 'm') ? 'danger' : 'success')
+        })
       }
     },
     visibilityChanged(isVisible, chain) {
-      this.isVisible = isVisible;
-      const idle = this.chains[chain.chain_name];
+      this.isVisible = isVisible
+      const idle = this.chains[chain.chain_name]
       if (isVisible && !idle.loaded) {
-        this.$set(idle, "loaded", true);
-        this.fetch(chain.chain_name);
+        this.$set(idle, 'loaded', true)
+        this.fetch(chain.chain_name)
       }
     },
   },
-};
+}
 </script>

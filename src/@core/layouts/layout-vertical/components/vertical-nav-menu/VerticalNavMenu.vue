@@ -26,9 +26,8 @@
             >
               <span class="brand-logo">
                 <b-img
-                  src="https://i.ibb.co/NsXQBJV/nologo.png"
+                  :src="appLogoImage"
                   alt="logo"
-                  width="150px"
                 />
               </span>
               <h2 class="brand-text">
@@ -58,14 +57,6 @@
       </slot>
     </div>
     <!-- / main menu header-->
-
-    <div>
-      <vertical-nav-menu-items
-        :items.sync="current"
-        class="navigation navigation-main"
-      />
-    </div>
-
     <!-- main menu content-->
     <vue-perfect-scrollbar
       :settings="perfectScrollbarSettings"
@@ -74,10 +65,9 @@
       @ps-scroll-y="evt => { shallShadowBottom = evt.srcElement.scrollTop > 0 }"
     >
       <vertical-nav-menu-items
-        :items.sync="options"
+        :items.sync="navMenuItems"
         class="navigation navigation-main"
       />
-      <div style="height: 28rem;" />
     </vue-perfect-scrollbar>
     <!-- /main menu content-->
   </div>
@@ -134,7 +124,7 @@ export default {
     const collapseTogglerIconFeather = computed(() => (collapseTogglerIcon.value === 'unpinned' ? 'CircleIcon' : 'DiscIcon'))
 
     // App Name
-    const { appName, appLogoImage1 } = $themeConfig.app
+    const { appName, appLogoImage } = $themeConfig.app
 
     return {
       navMenuItems,
@@ -154,26 +144,8 @@ export default {
 
       // App Name
       appName,
-      appLogoImage1,
+      appLogoImage,
     }
-  },
-  computed: {
-    current() {
-      const preload = []
-      const { selected } = this.$store.state.chains
-      const current = navMenuItems.find(x => (x.title === selected.chain_name))
-      // preload.push({ header: 'current' })
-      preload.push(current)
-      return preload
-    },
-    options() {
-      return navMenuItems.map(x => {
-        if (x.children) {
-          return { title: x.title, logo: x.icon, route: x.children[0].route }
-        }
-        return x
-      })
-    },
   },
 }
 </script>

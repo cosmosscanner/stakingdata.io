@@ -52,13 +52,12 @@
             <span class="text-uppercase">{{ chainid || selected_chain.chain_name }}</span>
           </h6>
           <small id="data-provider">
-            {{ currentApi }} ({{ selected_chain.sdk_version || '-' }})
             <b-dropdown
               class="ml-0"
               variant="flat-primary"
               no-caret
               toggle-class="p-0"
-              right
+              left
               sm
             >
               <template #button-content>
@@ -76,6 +75,7 @@
                 {{ item }}
               </b-dropdown-item>
             </b-dropdown>
+            {{ currentApi }} ({{ selected_chain.sdk_version || '-' }})
           </small>
         </b-media-body>
       </b-media>
@@ -84,98 +84,9 @@
     <!-- <dark-Toggler class="d-none d-lg-block" /> -->
     <!-- Right Col -->
     <b-navbar-nav class="nav align-items-center ml-auto">
-      <dark-Toggler class="d-none d-lg-block" />
+      <dark-Toggler />
       <search-bar />
-      <locale />
-      <b-dropdown
-        class="ml-1"
-        variant="link"
-        no-caret
-        toggle-class="p-0"
-        right
-      >
-
-        <template #button-content>
-          <b-button
-            v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-            variant="primary"
-            class="btn-icon"
-          >
-            <feather-icon icon="KeyIcon" />
-            {{ walletName }}
-          </b-button>
-        </template>
-
-        <b-dropdown-item
-          v-for="(item,k) in accounts"
-          :key="k"
-          :disabled="!item.address"
-          :to="`/${selected_chain.chain_name}/account/${item.address.addr}`"
-          @click="updateDefaultWallet(item.wallet)"
-        >
-          <div class="d-flex flex-column">
-            <span class="font-weight-bolder">{{ item.wallet }}
-              <b-avatar
-                v-if="item.wallet===walletName"
-                variant="success"
-                size="sm"
-              >
-                <feather-icon icon="CheckIcon" />
-              </b-avatar>
-            </span>
-            <small>{{ item.address ? formatAddr(item.address.addr) : `Not available on ${selected_chain.chain_name}` }}</small>
-          </div>
-        </b-dropdown-item>
-        <b-dropdown-divider />
-        <b-dropdown-item to="/wallet/import">
-          <feather-icon
-            icon="PlusIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Import Address</span>
-        </b-dropdown-item>
-        <b-dropdown-divider />
-
-        <b-dropdown-item :to="{ name: 'accounts' }">
-          <feather-icon
-            icon="KeyIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">Accounts</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item :to="{ name: 'delegations' }">
-          <feather-icon
-            icon="BookOpenIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">My Delegations</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item :to="`/${selected_chain.chain_name}/uptime/my`">
-          <feather-icon
-            icon="AirplayIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">My Validators</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item :to="`/wallet/votes`">
-          <feather-icon
-            icon="PocketIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">My Votes</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item :to="`/wallet/transactions`">
-          <feather-icon
-            icon="LayersIcon"
-            size="16"
-          />
-          <span class="align-middle ml-50">My Transactions</span>
-        </b-dropdown-item>
-      </b-dropdown>
+      <locale class="d-none" />
     </b-navbar-nav>
   </div>
 </template>
@@ -183,7 +94,7 @@
 <script>
 import {
   BLink, BNavbarNav, BMedia, BMediaAside, BAvatar, BMediaBody, VBTooltip, BButton,
-  BDropdown, BDropdownItem, BDropdownDivider,
+  BDropdown, BDropdownItem, BDropdownDivider, BBadge,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import DarkToggler from '@core/layouts/components/app-navbar/components/DarkToggler.vue'
@@ -191,11 +102,13 @@ import Locale from '@core/layouts/components/app-navbar/components/Locale.vue'
 import SearchBar from '@core/layouts/components/app-navbar/components/SearchBar.vue'
 // import CartDropdown from '@core/layouts/components/app-navbar/components/CartDropdown.vue'
 import { getLocalAccounts, timeIn, toDay } from '@/libs/utils'
+import { resolvePrimaryDomainByAddress } from 'ibc-domains-sdk'
 // import UserDropdown from '@core/layouts/components/app-navbar/components/UserDropdown.vue'
 
 export default {
   components: {
     BLink,
+    BBadge,
     BNavbarNav,
     BAvatar,
     BMedia,
@@ -229,9 +142,14 @@ export default {
       tips: 'Synced',
       index: 0,
       chainid: '',
+      names: {},
+      loading: [],
     }
   },
   computed: {
+    domains() {
+      return this.names
+    },
     walletName() {
       const key = this.$store?.state?.chains?.defaultWallet
       return key || 'Wallet'
@@ -255,19 +173,50 @@ export default {
     },
     accounts() {
       let accounts = getLocalAccounts() || {}
-      accounts = Object.entries(accounts).map(v => ({ wallet: v[0], address: v[1].address.find(x => x.chain === this.selected_chain.chain_name) }))
+      accounts = Object.entries(accounts)
+        .map(v => ({ wallet: v[0], address: v[1].address.find(x => x.chain === this.selected_chain.chain_name) }))
+        .filter(v => v.address)
 
-      if (accounts.length > 0) {
+      // accounts > 0 and wallet not setted, pick the first one as default
+      if (accounts.length > 0 && accounts.findIndex(x => x.wallet === this.walletName) < 0) {
         this.updateDefaultWallet(accounts[0].wallet)
       }
-      return accounts.filter(x => x.address)
-    },
-  },
-  mounted() {
 
+      if (accounts.findIndex(x => x.wallet === this.walletName) < 0 && this.walletName !== 'Wallet') {
+        this.updateDefaultWallet(null)
+      }
+      return accounts
+    },
   },
   methods: {
     formatAddr(v) {
+      if (!this.loading.includes(v)) {
+        this.loading.push(v)
+        this.$http.resolveStarName(v).then(res => {
+          const name = {
+            name: res.data,
+            provider: 'Stargaze',
+          }
+          if (this.names[v]) {
+            this.names[v].push(name)
+          } else {
+            this.names[v] = [name]
+          }
+        })
+        resolvePrimaryDomainByAddress(this.address).then(result => {
+          if (result.isOk()) {
+            const name = {
+              name: result.value,
+              provider: 'IBC Domain',
+            }
+            if (this.names[v]) {
+              this.names[v].push(name)
+            } else {
+              this.names[v] = [name]
+            }
+          }
+        })
+      }
       return v.substring(0, 10).concat('...', v.substring(v.length - 10))
     },
     updateDefaultWallet(v) {
