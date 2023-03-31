@@ -25,7 +25,7 @@
 
 Submit your pull request [here](./src/chains). Ping.pub will add your chains as soon as possible. It is **FREE** (You must have 10+ independent validators on your chain).
 
-We remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
+Ping.pub states that they remain neutral to all chains, and we do not comment on their market prospects, technical risks, or investment risks. The only condition we list on ping.pub is if there are ten validators, and we cannot determine if these validators are controlled by the same entity.
 
 ## Why Stakingdata/Ping explorer use official/trusted third party public LCD/rpc server? 
 
@@ -37,7 +37,7 @@ There are two main reasons:
 
 ## Donation
 
-Your donation will help us make better products. Thanks in advance.
+Your donation will help Ping.pub make better products. Thanks in advance.
 
  - Address for ERC20: USDC, USDT, ETH
 ```
@@ -56,7 +56,7 @@ Your donation will help us make better products. Thanks in advance.
 
 ## Hire us
 
-You can hire us by submiting an issue and fund the issue on [IssueHunter](https://issuehunt.io/r/ping-pub/explorer)
+You can hire Pingpub by submiting an issue and fund the issue on [IssueHunter](https://issuehunt.io/r/ping-pub/explorer)
 
 
 ## Contributors
