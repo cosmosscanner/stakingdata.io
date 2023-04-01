@@ -34,7 +34,7 @@
     "@tharsis/proto": "0.1.19",
     "@tharsis/transactions": "^0.2.5",
     "@vue/composition-api": "^1.4.9",
-    "@vueuse/core": "4.0.0",
+    "@vueuse/core": "4.11.2",
     "animate.css": "4.1.1",
     "apexcharts": "3.2.0",
     "babel-runtime": "^6.26.0",
