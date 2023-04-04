@@ -4,7 +4,7 @@
 
 <h1>Stakingdata.io</h1>
 
-**This is a Ping.pub fork developed by DECALI.io. The repo does not have wallet connections and therefore a good option for the US based validators.**
+**This is a Ping.pub fork that has wallet connections removed and therefore, a good option for the US-based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
