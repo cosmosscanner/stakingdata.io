@@ -21,7 +21,6 @@ import { $themeColors } from '@themeConfig'
 // import PingWalletClient from './data/signing'
 import { SigningStargateClient } from '@cosmjs/stargate'
 
-
 dayjs.extend(localeData)
 dayjs.extend(duration)
 dayjs.extend(relativeTime)
@@ -241,60 +240,6 @@ function isEvmosBasedChain(chainId) {
   const re = /[_]{1}[\d]{4}[\\-]{1}[\d]+$/g
   return re.test(chainId)
 }
-
-export async function sign(device, chainId, signerAddress, messages, fee, memo, signerData) {
-  const hdpath = getHdPath(signerAddress)
-  let client
-  if (device.startsWith('ledger')) {
-    client = await getSigningClient(device, hdpath)
-  } else {
-    if (!window.getOfflineSigner || !window.keplr) {
-      throw new Error('Please install keplr extension')
-    }
-    await window.keplr.enable(chainId)
-    if (isEvmosBasedChain(chainId)) {
-      const signer = window.getOfflineSigner(chainId)
-      client = await SigningKeplerEthermintClient.offline(signer)
-    } else {
-      const signer = window.getOfflineSignerOnlyAmino(chainId)
-      client = await SigningStargateClient.offline(signer)
-    }
-  }
-  const coinType = Number(hdpath[1])
-  const addr = device.startsWith('ledger') && coinType !== 60 ? toSignAddress(signerAddress) : signerAddress
-  return client.sign(addr, messages, fee, memo, signerData)
-}
-
-// import address from ledger
-async function getLedgerAppName(coinType, device, hdpath) {
-  let ledgerAppName = 'Cosmos'
-  switch (coinType) {
-    case 60:
-      return EthereumLedgerSigner.create(device, hdpath) // 'Ethereum'
-    case 529:
-      ledgerAppName = 'Secret' // 'Secret'
-      break
-    case 852:
-      ledgerAppName = 'Desmos' // 'Desmos'
-      break
-    case 330:
-      ledgerAppName = 'Terra' // 'Terra'
-      break
-    case 118:
-    default:
-  }
-  const transport = await (device === 'ledgerBle' ? TransportWebBLE.create() : TransportWebUSB.create())
-  return new LedgerSigner(transport, { hdPaths: [hdpath], ledgerAppName })
-}
-
-export async function getLedgerAddress(transport = 'blu', hdPath = "m/44'/118/0'/0/0") {
-  const protocol = transport === 'usb' ? await TransportWebUSB.create() : await TransportWebBLE.create()
-  // extract Cointype from from HDPath
-  const coinType = Number(stringToPath(hdPath)[1])
-  const signer = await getLedgerAppName(coinType, protocol, stringToPath(hdPath))
-  return signer.getAccounts()
-}
-/// end import address from ledger
 
 export function toDuration(value) {
   return dayjs.duration(value).humanize()
