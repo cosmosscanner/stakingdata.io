@@ -15,7 +15,7 @@
 
 </div>
 
-Stakingdata.io is a light explorer for Cosmos-based Blockchains. 
+Stakingdata.io is a light explorer for Cosmos-based blockchains. 
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
