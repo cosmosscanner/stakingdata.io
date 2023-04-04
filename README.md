@@ -4,18 +4,18 @@
 
 <h1>Stakingdata.io</h1>
 
-<**A Ping.pub fork by DECALI.io. This repo does not have wallet connections and therefore a good option for the US based validators.**
+**A Ping.pub fork by DECALI.io. This repo does not have wallet connections and therefore a good option for the US based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
 [![Ping Deploy](https://github.com/ping-pub/explorer/actions/workflows/mainnet-deploy.yaml/badge.svg)](https://github.com/ping-pub/explorer/actions/workflows/mainnet-deploy.yaml)
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40ping_pub)](https://twitter.com/decaliio)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40DECALI.io)](https://twitter.com/decaliio)
 
 
 
 </div>
 
-Stakingdata.io is a light explorer for Cosmos-based Blockchains - a fork of the popular Ping.pub app.
+Stakingdata.io is a light explorer for Cosmos-based Blockchains. 
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
