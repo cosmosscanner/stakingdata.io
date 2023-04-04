@@ -15,7 +15,7 @@
 
 </div>
 
-Stakingdata.io is a light explorer for Cosmos-based Blockchains - a fork of the popular Ping.pub app.
+Stakingdata.io is a light explorer for Cosmos-based blockchains and a fork of the popular Ping.pub app.
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
