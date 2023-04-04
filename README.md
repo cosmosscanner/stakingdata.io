@@ -13,7 +13,7 @@
 
 </div>
 
-`Stakingdata.io` is a light explorer for Cosmos-based Blockchains - a forked version of the popular Ping.pub app - https://ping.pub.
+`Stakingdata.io` is a light explorer for Cosmos-based Blockchains - a forked version of the popular Ping.pub app.
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
