@@ -4,18 +4,18 @@
 
 <h1>Stakingdata.io</h1>
 
-<**A Ping.pub fork by DECALI.io. This repo does not have wallet connections and therefore a good option for the US based validators.**
+**This is a Ping.pub fork that has wallet connections removed and therefore, a good option for the US-based validators.**
 
 [![version](https://img.shields.io/github/tag/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/releases/latest)
 [![GitHub](https://img.shields.io/github/license/ping-pub/explorer.svg)](https://github.com/ping-pub/explorer/blob/master/LICENSE)
 [![Ping Deploy](https://github.com/ping-pub/explorer/actions/workflows/mainnet-deploy.yaml/badge.svg)](https://github.com/ping-pub/explorer/actions/workflows/mainnet-deploy.yaml)
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40ping_pub)](https://twitter.com/ping_pub)
-[![https://discord.gg/CmjYVSr6GW](https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat)](https://discord.gg/CmjYVSr6GW)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40DECALI.io)](https://twitter.com/decaliio)
+
 
 
 </div>
 
-Stakingdata.io is a light explorer for Cosmos-based Blockchains - a fork of the popular Ping.pub app.
+Stakingdata.io is a light explorer for Cosmos-based Blockchains. 
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
@@ -23,7 +23,7 @@ Stakingdata.io is a light explorer for Cosmos-based Blockchains - a fork of the 
 
 ## Do you want to list your blockchain on Ping.pub?
 
-Please submit your pull request here. Ping.pub will add your chain as soon as possible. It is FREE, and Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on Ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
+Please submit your pull request [here](./src/chains). Ping.pub will add your chain as soon as possible. It is FREE, and Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on Ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
 
 ## Why Stakingdata/Ping explorer use official/trusted third party public LCD/RPC server?
 
