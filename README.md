@@ -17,18 +17,18 @@
 
 ## What is the difference between Stakingdata.io explorer and other explorers? 
 
-`Stakingdata.io`, a Ping.pub fork, is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. `Stakingdata.io` only fetch data from Cosmos full node via LCD/RPC endpoints. Ping.pub calls it a "Light Explorer".
+Stakingdata.io, a Ping.pub fork, is designed to explore blockchain data as real as possible, therefore there is no cache, no pre-processing. Stakingdata. We only fetch data from Cosmos full node via LCD/RPC endpoints. `Ping.pub` calls it a "Light Explorer".
 
 ## Do you want to list your blockchain on ping.pub?
 
 Please submit your pull request here. Ping.pub will add your chain as soon as possible. It is FREE, and Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on Ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
 
-## Why Stakingdata/Ping explorer use official/trusted third party public LCD/rpc server?
+## Why Stakingdata/Ping explorer use official/trusted third party public LCD/RPC servers?
 
 There are two main reasons:
 
 Trust, in a decentralized system, anything controlled by one entity cannot be trusted. So Ping.pub decided to build with the community.
-Limited resources: `Ping Dashboard` will list hundreds of cosmos-based blockchains in the future, and it is impossible for the Ping.pub team to run validators or full nodes for all of them.
+Limited resources: `Ping.pub` will list hundreds of cosmos-based blockchains in the future, and it is impossible for the team to run validators or full nodes for all of them.
 
 
 ## Donation
