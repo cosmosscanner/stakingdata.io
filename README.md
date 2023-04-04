@@ -23,7 +23,7 @@ Stakingdata.io is a light explorer for Cosmos-based Blockchains.
 
 ## Do you want to list your blockchain on Ping.pub?
 
-Please submit your pull request [here]([https://ping.pub/coffee](https://github.com/ping-pub/explorer). Ping.pub will add your chain as soon as possible. It is FREE, and Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on Ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
+Please submit your pull request [here](./src/chains). Ping.pub will add your chain as soon as possible. It is FREE, and Ping.pub states that they remain neutral to all chains, and they do not comment on the market prospects, technical risks, or investment risks. The only condition for listing on Ping.pub is that the chain has ten validators, and Ping.pub cannot determine if these validators are controlled by the same entity.
 
 ## Why Stakingdata/Ping explorer use official/trusted third party public LCD/RPC server?
 
