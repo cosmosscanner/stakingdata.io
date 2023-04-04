@@ -20,9 +20,7 @@ import { $themeColors } from '@themeConfig'
 // import { SigningStargateClient } from '@cosmjs/stargate'
 // import PingWalletClient from './data/signing'
 import { SigningStargateClient } from '@cosmjs/stargate'
-import { getSigningClient } from './client/SigningEthermintClient.ts'
-import EthereumLedgerSigner from './client/EthereumLedgerSigner.ts'
-import SigningKeplerEthermintClient from './client/SigningKeplrEthermintClient'
+
 
 dayjs.extend(localeData)
 dayjs.extend(duration)
