@@ -57,5 +57,5 @@ You can hire Ping.pub by submiting an issue and fund the issue on [IssueHunter](
 
 ## Contributors
 
-Developers: @liangping @dingyiming | This fork is developed by @cosmosscanner and hello@decali.io
+Developers: @liangping @dingyiming | The Stakingdata.io fork is developed by @cosmosscanner and hello@decali.io.
 
